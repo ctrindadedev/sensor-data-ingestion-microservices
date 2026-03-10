@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: operations-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/operations_db
+    username: postgres
+    password: postgres123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # Configuração do  Producer
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: adminpassword
