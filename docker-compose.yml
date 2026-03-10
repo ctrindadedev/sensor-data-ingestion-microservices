@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Banco de Dados do Serviço de Operações
+  postgres-operations:
+    image: postgres:15-alpine
+    container_name: postgres-operations
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: operations_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Banco de Dados do Serviço de Analytics
+  mongo-analytics:
+    image: mongo:6.0
+    container_name: mongo-analytics
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo123
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # Mensageria
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: rabbitmq-broker
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: adminpassword
+    ports:
+      - "5672:5672"   # Porta das aplicações Spring
+      - "15672:15672" # Porta do Painel no Navegador
+
+volumes:
+  postgres_data:
+  mongo_data:
