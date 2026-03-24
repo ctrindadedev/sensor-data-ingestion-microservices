@@ -1,4 +1,4 @@
-package com.expensetracker.operations_service;
+package com.sensor_data_ingestion.operations_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
