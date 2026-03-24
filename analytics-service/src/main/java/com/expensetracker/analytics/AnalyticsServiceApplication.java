@@ -1,4 +1,4 @@
-package com.expensetracker.analytics_service;
+package com.expensetracker.analytics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
