@@ -6,6 +6,7 @@ import com.sensor_data_ingestion.operations_service.domain.error.ErroDeIngestao;
 import com.sensor_data_ingestion.operations_service.domain.model.LeituraDoSensor;
 import com.sensor_data_ingestion.operations_service.messaging.LeituraPublisher;
 import com.sensor_data_ingestion.operations_service.repository.LeituraRepository;
+import com.sensor_data_ingestion.operations_service.repository.entity.LeituraDoSensorEntity;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,10 @@ public class IngestaoService {
 
         return LeituraDoSensor.criar(rawSensorId, rawValor, rawUnidade, rawTimeStamp)
                 .map(leituraValida -> {
-                    repository.save(leituraValida);
+
+                    LeituraDoSensorEntity leituraDoSensorToSave= LeituraDoSensorEntity.aPartirDoDominio(leituraValida);
+
+                    repository.save(leituraDoSensorToSave);
                     rabbitPublisher.enviarEventoTelemetria(leituraValida);
                     return leituraValida;
                 });

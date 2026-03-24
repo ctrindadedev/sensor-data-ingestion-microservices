@@ -1,5 +1,6 @@
 package com.sensor_data_ingestion.operations_service.repository.entity;
 
+import com.sensor_data_ingestion.operations_service.domain.model.LeituraDoSensor;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,4 +27,14 @@ public class LeituraDoSensorEntity {
 
     @Column(name = "instante_processamento")
     private Instant timestamp;
+
+    public static LeituraDoSensorEntity aPartirDoDominio(LeituraDoSensor dominio) {
+        LeituraDoSensorEntity entity = new LeituraDoSensorEntity();
+
+        entity.sensorId = dominio.sensorId().valor();
+        entity.valor = dominio.valor().valor();
+        entity.unidade = dominio.unidade().name();
+        entity.timestamp = dominio.timestamp();
+        return entity;
+    }
 }
