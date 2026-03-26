@@ -61,3 +61,22 @@ I developed the system to understand the trade-offs of different ways to design 
 
    ```bash
    docker-compose up -d
+   ```
+
+### Back-end Setup (Operations API)
+1. Navigate to the `operations-service` folder.
+2. Run the project in your IDE or via terminal:
+
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+3. The API will be up and running. The REST endpoints will be available on the default port `8080`.
+
+### Back-end Setup (Analytics API)
+1. Open a new terminal and navigate to the `analytics-service` folder.
+2. Run the project in your IDE or via terminal:
+
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+3. The API will be up and running on port `8081` and will immediately start listening to the RabbitMQ queues
